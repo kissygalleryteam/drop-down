@@ -8,9 +8,134 @@
 <body>
 <h2>DropDown的demo</h2>
 
+
+<!-- 下拉 -->
+<style type="text/css">
+.menu{
+    width: 150px;
+    margin-left: 33px;
+}
+.menu-head{
+    display: inline-block;
+    width: 150px;
+    height: 23px;
+    line-height: 23px;
+    font-size: 14px;
+    border: 1px #ddd solid;
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+}
+.menu-head a{
+    color: #666;
+}
+.menu-lists-box{
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+    z-index: 1000;
+    margin-top: -2px;
+}
+.menu-lists{
+    color: #000;
+    overflow: hidden;
+    height: 0px;
+    border: 1px #ddd solid;
+    z-index: 1000;
+    width: 150px;
+    background:#ededed;
+}
+.panel{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 95px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+.bounceIn{
+    -webkit-animation : bounceIn 0.5s 1 ease;
+    -moz-animation : bounceIn 0.5s 1 ease;
+    -o-animation : bounceIn 0.5s 1 ease;
+    -ms-animation : bounceIn 0.5s 1 ease;
+}
+@-ms-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+@-webkit-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+@-moz-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+@-o-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+.bounceOut{
+    -webkit-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+    -moz-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+    -o-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+    -ms-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+}
+@-webkit-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+@-moz-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+@-o-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+@-ms-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+
+</style>
+
+
+<div class="J_KG_DropDown menu">
+    <div class="menu-head">
+        <span>hover 下拉</span>
+    </div>
+    <div class="J_KG_DropDown_Box menu-lists-box">
+        <div class="J_KG_DropDown_List menu-lists">
+            <div class="panel">
+                Content
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     var S = KISSY;
-    if (S.Config.debug) {
+    if (S.Config.debug || 1) {
         var debugPath = "../build";
         S.config({
             packages:[
@@ -25,7 +150,24 @@
     }
 
     S.use('kg/drop-down/1.0.0/index', function (S, DropDown) {
-        new DropDown();
+        
+        var dropDown = new DropDown({
+            height: 260
+        });
+        
+        dropDown.on('showStart',function(){
+            console.log('showStart');
+        })
+        dropDown.on('showEnd',function(){
+            console.log('showEnd');
+        })
+        dropDown.on('hideStart',function(){
+            console.log('hideStart');
+        })
+        dropDown.on('hideEnd',function(){
+            console.log('hideEnd');
+        })
+
     })
 </script>
 </body>

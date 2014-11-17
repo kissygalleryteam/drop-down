@@ -1,1 +1,1 @@
-KISSY.config("modules",{"kg/drop-down/1.0.0/index":{requires:["node","base"]}});
+KISSY.config("modules",{"kg/drop-down/1.0.0/index":{requires:["node","base","event"]}});

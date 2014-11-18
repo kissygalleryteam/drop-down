@@ -19,7 +19,11 @@ S.augment(DropDown, Event.Target, {
     init:function(conf){
         var self = this;
 
-        // 组件粗略抽象代码
+        // 设置组件基础样式
+        $(conf.hook).addClass('kg-menu');
+        $(conf.hookBox).addClass('kg-menu-box');
+        $(conf.hookList).addClass('kg-menu-list');
+        
         $(conf.hookBox).height(conf.height);
         conf.animationTimer = null;
 

@@ -11,11 +11,12 @@
 
 <!-- 下拉 -->
 <style type="text/css">
-.menu{
+.my-class-box{
     width: 150px;
     margin-left: 33px;
+    position: relative;
 }
-.menu-head{
+.my-class-hd{
     display: inline-block;
     width: 150px;
     height: 23px;
@@ -25,40 +26,29 @@
     color: #000;
     text-align: center;
     cursor: pointer;
-    position: relative;
     z-index: 1001;
 }
-.menu-head a{
-    color: #666;
+.my-class-bd{
+    display: inline-block;
+    border: 1px #ddd solid;
+    width: 150px;
+    line-height: 30px;
 }
-.menu-lists-box{
+
+.kg-menu-box{
     position: absolute;
     text-align: center;
     font-size: 14px;
     display: none;
     z-index: 1000;
-    margin-top: -2px;
 }
-.menu-lists{
+.kg-menu-list{
     color: #000;
     overflow: hidden;
     height: 0px;
-    border: 1px #ddd solid;
     z-index: 1000;
-    width: 150px;
-    background:#ededed;
+    /*background:#ededed;*/
 }
-.panel{
-    display: inline-block;
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
-    position: absolute;
-    top: 95px;
-    left: 50%;
-    margin-left: -50px;
-}
-
 .bounceIn{
     -webkit-animation : bounceIn 0.5s 1 ease;
     -moz-animation : bounceIn 0.5s 1 ease;
@@ -119,15 +109,20 @@
 </style>
 
 
-<div class="J_KG_DropDown menu">
-    <div class="menu-head">
-        <span>hover 下拉</span>
+<div class="J_KG_DropDown my-class-box">
+    <div class="my-class-hd">
+        hover 下拉
     </div>
-    <div class="J_KG_DropDown_Box menu-lists-box">
-        <div class="J_KG_DropDown_List menu-lists">
-            <div class="panel">
-                Content
-            </div>
+    <div class="J_KG_DropDown_Box">
+        <div class="J_KG_DropDown_List my-class-bd">
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content
         </div>
     </div>
 </div>
@@ -166,6 +161,7 @@
         })
         dropDown.on('hideEnd',function(){
             console.log('hideEnd');
+            console.log('~~~~~~~~~~~~~~~~~~');
         })
 
     })

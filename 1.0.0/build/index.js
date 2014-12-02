@@ -1,5 +1,5 @@
 /*
-Tue Dec 02 2014 11:34:54 GMT+0800 (CST)
+Tue Dec 02 2014 11:37:36 GMT+0800 (CST)
 combined files by KMD:
 
 index.js
@@ -31,7 +31,7 @@ S.augment(DropDown, Event.Target, {
 
         $('body').delegate('mouseenter',conf.hook, function(e){
             var $e = $(e.currentTarget);
-            self._initDom($(e.currentTarget));
+            self._initDom(conf, $e);
             self._show(conf, self, $e);
         });
         $('body').delegate('mouseleave',conf.hook, function(e){
@@ -40,7 +40,7 @@ S.augment(DropDown, Event.Target, {
         });
 
     },
-    _initDom: function($e){
+    _initDom: function(conf, $e){
         // 设置组件基础样式
         if(!$e.hasClass('kg-menu')){
             $e.addClass('kg-menu');

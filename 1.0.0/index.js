@@ -23,7 +23,7 @@ S.augment(DropDown, Event.Target, {
 
         $('body').delegate('mouseenter',conf.hook, function(e){
             var $e = $(e.currentTarget);
-            self._initDom($(e.currentTarget));
+            self._initDom(conf, $e);
             self._show(conf, self, $e);
         });
         $('body').delegate('mouseleave',conf.hook, function(e){
@@ -32,7 +32,7 @@ S.augment(DropDown, Event.Target, {
         });
 
     },
-    _initDom: function($e){
+    _initDom: function(conf, $e){
         // 设置组件基础样式
         if(!$e.hasClass('kg-menu')){
             $e.addClass('kg-menu');

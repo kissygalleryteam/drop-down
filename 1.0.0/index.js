@@ -27,10 +27,10 @@ S.augment(DropDown, Event.Target, {
         $(conf.hookBox).height(conf.height);
         conf.animationTimer = null;
 
-        $(conf.hook).on("mouseenter", function(e){
+        $('body').delegate('mouseenter',conf.hook, function(e){
             self._show(conf, self);
         });
-        $(conf.hook).on("mouseleave", function(e){
+        $('body').delegate('mouseleave',conf.hook, function(e){
             self._hide(conf, self);
         });
 

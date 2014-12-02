@@ -1,5 +1,5 @@
 /*
-Tue Nov 18 2014 10:21:27 GMT+0800 (CST)
+Tue Dec 02 2014 10:33:37 GMT+0800 (CST)
 combined files by KMD:
 
 index.js
@@ -35,10 +35,10 @@ S.augment(DropDown, Event.Target, {
         $(conf.hookBox).height(conf.height);
         conf.animationTimer = null;
 
-        $(conf.hook).on("mouseenter", function(e){
+        $('body').delegate('mouseenter',conf.hook, function(e){
             self._show(conf, self);
         });
-        $(conf.hook).on("mouseleave", function(e){
+        $('body').delegate('mouseleave',conf.hook, function(e){
             self._hide(conf, self);
         });
 

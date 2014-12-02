@@ -10,46 +10,52 @@ var baseConf = {
     hideTime: 300
 }
 
-function DropDown(conf){
+function DropDown(conf){ 
     this.init(S.merge(baseConf,conf));
 }
 
 S.augment(DropDown, Event.Target, {
 
-    init:function(conf){
+    init: function(conf){
         var self = this;
-
-        // 设置组件基础样式
-        $(conf.hook).addClass('kg-menu');
-        $(conf.hookBox).addClass('kg-menu-box');
-        $(conf.hookList).addClass('kg-menu-list');
         
-        $(conf.hookBox).height(conf.height);
         conf.animationTimer = null;
 
         $('body').delegate('mouseenter',conf.hook, function(e){
-            self._show(conf, self);
+            var $e = $(e.currentTarget);
+            self._initDom($(e.currentTarget));
+            self._show(conf, self, $e);
         });
         $('body').delegate('mouseleave',conf.hook, function(e){
-            self._hide(conf, self);
+            var $e = $(e.currentTarget);
+            self._hide(conf, self, $e);
         });
 
     },
-    _show:function(conf,self){
+    _initDom: function($e){
+        // 设置组件基础样式
+        if(!$e.hasClass('kg-menu')){
+            $e.addClass('kg-menu');
+            $e.one(conf.hookBox).height(conf.height);
+            $e.one(conf.hookBox).addClass('kg-menu-box');
+            $e.one(conf.hookList).addClass('kg-menu-list');
+        }
+    },
+    _show: function(conf, self, $e){
         self.fire('showStart');
         if(S.Features.isTransitionSupported() && 0){
-            $(conf.hookBox).css({
+            $e.one(conf.hookBox).css({
                 display : 'block'
             });
-            $(conf.hookList).removeClass('bounceOut').addClass('bounceIn');
+            $e.one(conf.hookList).removeClass('bounceOut').addClass('bounceIn');
             setTimeout(function(){
-                $(conf.hookList).css('height',conf.height);
+                $e.one(conf.hookList).css('height',conf.height);
                 self.fire('showEnd');
             },conf.showTime);
         }else{
             conf.animationTimer && conf.animationTimer.stop();
-            $(conf.hookBox).css('display','block');
-            $(conf.hookList).animate({
+            $e.one(conf.hookBox).css('display','block');
+            $e.one(conf.hookList).animate({
                 height : conf.height
             },{
                 duration : conf.showTime/1000,
@@ -60,10 +66,10 @@ S.augment(DropDown, Event.Target, {
             },conf.showTime);
         }
     },
-    _hide:function(conf,self){
+    _hide: function(conf, self, $e){
         self.fire('hideStart');
         if(S.Features.isTransitionSupported() && 0){
-            $(conf.hookList).removeClass('bounceIn').addClass('bounceOut');
+            $e.one(conf.hookList).removeClass('bounceIn').addClass('bounceOut');
             setTimeout(function(){
                 $(conf.hookList).css({
                     height : 0,
@@ -75,13 +81,13 @@ S.augment(DropDown, Event.Target, {
             },conf.hideTime)
         }else{
             conf.animationTimer && conf.animationTimer.stop();
-            conf.animationTimer = $(conf.hookList).animate({
+            conf.animationTimer = $e.one(conf.hookList).animate({
                 height : 0
             },{
                 duration : conf.hideTime/1000,
                 easing : 'backIn',
                 complete : function(){
-                    $(conf.hookBox).css({
+                    $e.one(conf.hookBox).css({
                         display : 'none'
                     });
                 }

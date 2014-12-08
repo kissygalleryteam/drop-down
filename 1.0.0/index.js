@@ -10,7 +10,7 @@ var baseConf = {
     hideTime: 300
 }
 
-function DropDown(conf){ 
+function DropDown(conf){
     this.init(S.merge(baseConf,conf));
 }
 
@@ -18,21 +18,21 @@ S.augment(DropDown, Event.Target, {
 
     init: function(conf){
         var self = this;
-        
         conf.animationTimer = null;
-
         $('body').delegate('mouseenter',conf.hook, function(e){
             var $e = $(e.currentTarget);
             self._initDom(conf, $e);
+            self.fire('thismouseenter');
             self._show(conf, self, $e);
         });
         $('body').delegate('mouseleave',conf.hook, function(e){
             var $e = $(e.currentTarget);
+            self.fire('thismouseleave');
             self._hide(conf, self, $e);
         });
-
     },
     _initDom: function(conf, $e){
+        var self = this;
         // 设置组件基础样式
         if(!$e.hasClass('kg-menu')){
             $e.addClass('kg-menu');
@@ -42,6 +42,7 @@ S.augment(DropDown, Event.Target, {
         }
     },
     _show: function(conf, self, $e){
+        var self = this;
         self.fire('showStart');
         if(S.Features.isTransitionSupported() && 0){
             $e.one(conf.hookBox).css({
@@ -53,7 +54,10 @@ S.augment(DropDown, Event.Target, {
                 self.fire('showEnd');
             },conf.showTime);
         }else{
-            conf.animationTimer && conf.animationTimer.stop();
+            if(conf.animationTimer){
+                self.$lastE.one(conf.hookList).css({'height' : 0});
+                conf.animationTimer.stop();
+            }
             $e.one(conf.hookBox).css('display','block');
             $e.one(conf.hookList).animate({
                 height : conf.height
@@ -67,6 +71,7 @@ S.augment(DropDown, Event.Target, {
         }
     },
     _hide: function(conf, self, $e){
+        var self = this;
         self.fire('hideStart');
         if(S.Features.isTransitionSupported() && 0){
             $e.one(conf.hookList).removeClass('bounceIn').addClass('bounceOut');
@@ -80,6 +85,8 @@ S.augment(DropDown, Event.Target, {
                 self.fire('hideEnd');
             },conf.hideTime)
         }else{
+            // conf.lastBox = $e.one(conf.hookBox)
+            self.$lastE = $e;
             conf.animationTimer && conf.animationTimer.stop();
             conf.animationTimer = $e.one(conf.hookList).animate({
                 height : 0

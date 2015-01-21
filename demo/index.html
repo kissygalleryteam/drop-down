@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>DropDown的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.6/seed-min.js" charset="utf-8"></script>
+</head>
+<body>
+<h2>DropDown的demo</h2>
+
+
+<!-- 下拉 -->
+<style type="text/css">
+.my-class-box{
+    width: 150px;
+    margin-left: 33px;
+    position: relative;
+}
+.my-class-hd{
+    display: inline-block;
+    width: 150px;
+    height: 23px;
+    line-height: 23px;
+    font-size: 14px;
+    border: 1px #ddd solid;
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1001;
+}
+.my-class-bd{
+    display: inline-block;
+    border: 1px #ddd solid;
+    width: 150px;
+    line-height: 30px;
+}
+
+.kg-menu-box{
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+    z-index: 1000;
+}
+.kg-menu-list{
+    color: #000;
+    overflow: hidden;
+    height: 0px;
+    z-index: 1000;
+    /*background:#ededed;*/
+}
+.bounceIn{
+    -webkit-animation : bounceIn 0.5s 1 ease;
+    -moz-animation : bounceIn 0.5s 1 ease;
+    -o-animation : bounceIn 0.5s 1 ease;
+    -ms-animation : bounceIn 0.5s 1 ease;
+}
+@-ms-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+@-webkit-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+@-moz-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+@-o-keyframes bounceIn{
+    0% { height: 0%; }
+    30% { height: 100%; }
+    50% { height: 101.74%; }
+    70% { height: 100%; }
+    100% { height: 100%; }
+}
+.bounceOut{
+    -webkit-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+    -moz-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+    -o-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+    -ms-animation : bounceOut 0.3s 1 cubic-bezier(1.00, 0.00, 1.00, 1.00);
+}
+@-webkit-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+@-moz-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+@-o-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+@-ms-keyframes bounceOut{
+    0% { height: 100%; }
+    100%{ height: 0%; }
+}
+
+</style>
+
+
+<div class="J_KG_DropDown my-class-box">
+    <div class="my-class-hd">
+        hover 下拉
+    </div>
+    <div class="J_KG_DropDown_Box">
+        <div class="J_KG_DropDown_List my-class-bd">
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content<br>
+            Content
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var S = KISSY;
+    if (S.Config.debug || 1) {
+        var debugPath = "../build";
+        S.config({
+            packages:[
+                {
+                    name:"kg/drop-down/1.0.0",
+                    path:debugPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.use('kg/drop-down/1.0.0/index', function (S, DropDown) {
+        
+        var dropDown = new DropDown({
+            height: 260
+        });
+        
+        dropDown.on('showStart',function(){
+            console.log('showStart');
+        })
+        dropDown.on('showEnd',function(){
+            console.log('showEnd');
+        })
+        dropDown.on('hideStart',function(){
+            console.log('hideStart');
+        })
+        dropDown.on('hideEnd',function(){
+            console.log('hideEnd');
+            console.log('~~~~~~~~~~~~~~~~~~');
+        })
+
+    })
+</script>
+</body>
+</html>
+
